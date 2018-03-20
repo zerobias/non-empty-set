@@ -1,0 +1,29 @@
+{
+  "env": {
+    "test": {
+      "plugins": ["@babel/plugin-transform-modules-commonjs"]
+    },
+    "commonjs": {
+      "plugins": [
+        "@babel/plugin-transform-modules-commonjs"
+      ]
+    }
+  },
+  "presets": [
+    "@babel/preset-flow",
+    [
+      "@babel/preset-env",
+      {
+        "target": {
+          "modules": false,
+          "shippedProposals": true,
+          "targets": {
+            "node": "current",
+            "useBuiltIns": "usage",
+            "browsers": ["last 2 versions", "safari >= 7"]
+          }
+        }
+      }
+    ]
+  ]
+}
