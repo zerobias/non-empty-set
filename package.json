@@ -1,6 +1,6 @@
 {
   "name": "non-empty-set",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Statically typed non empty Set",
   "main": "lib/index.js",
   "author": "Dmitry Boldyrev <ribkatt@gmail.com>",
@@ -11,10 +11,8 @@
     "test": "jest --config=jest.json",
     "test:watch": "jest --config=jest.json --watch",
     "prepublishOnly": "npm run build && npm run flow-copy",
-    "flow-copy:cjs":
-      "flow-copy-source -i=__test__**/* src lib && cp -rf src/**/*flow lib/**/*flow",
-    "flow-copy:es":
-      "flow-copy-source -i=__test__**/* src es && cp src/*flow es",
+    "flow-copy:cjs": "flow-copy-source -i=__test__**/* src lib",
+    "flow-copy:es": "flow-copy-source -i=__test__**/* src es",
     "flow-copy": "npm run flow-copy:cjs && npm run flow-copy:es",
     "build": "npm run build:cjs && npm run build:es",
     "build:cjs":
@@ -47,5 +45,6 @@
     "rimraf": "^2.6.2"
   },
   "sideEffects": false,
+  "repository": "https://github.com/zerobias/non-empty-set.git",
   "files": ["es", "lib", "src"]
 }
