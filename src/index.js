@@ -1,9 +1,9 @@
 //@flow strict
 
 export class NonEmptySet<T> extends Set<T> {}
-export class EmptySet<T> extends Set<T> {
-  static ref: EmptySet<T> = new EmptySet()
-}
+export class EmptySet<T> extends Set<T> {}
+
+const emptySetRef: EmptySet<any> = new EmptySet()
 
 export type FiniteSet<T> = NonEmptySet<T> | EmptySet<T>
 export function isEmpty<T>(set: FiniteSet<T>): boolean %checks {
@@ -18,7 +18,7 @@ export function nonEmptySet<T>(value: T): NonEmptySet<T> {
 }
 
 export function emptySet<T>(): EmptySet<T> {
-  return EmptySet.ref
+  return emptySetRef
 }
 
 declare export function fromSet<T>(set: EmptySet<T>): EmptySet<T>
@@ -28,7 +28,7 @@ export function fromSet<T>(set: Set<T>): FiniteSet<T> {
   if (set instanceof EmptySet) return set
   if (set instanceof NonEmptySet) return set
   if (set.size > 0) return new NonEmptySet([...set])
-  return EmptySet.ref
+  return emptySetRef
 }
 
 declare export function fromIterable<T>(set: EmptySet<T>): EmptySet<T>
@@ -54,7 +54,7 @@ export function remove<T>(values: Iterable<T>, set: Set<T>): FiniteSet<T> {
   if (set instanceof EmptySet) return set
   for (const value of values) {
     set.delete(value)
-    if (set.size === 0) return EmptySet.ref
+    if (set.size === 0) return emptySetRef
   }
   return fromSet(set)
 }
